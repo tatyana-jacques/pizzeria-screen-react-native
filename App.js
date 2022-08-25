@@ -1,20 +1,47 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import "react-native-gesture-handler"
+import {NavigationContainer} from "@react-navigation/native"
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import Calculator from "./src/pages/Calculator/Calculator"
+import LoginInstagram from "./src/pages/LoginInstagram/LoginInstagram"
+import PizzaChoice from "./src/pages/PizzaChoice/PizzaChoice"
+
+
+
+const Tab = createBottomTabNavigator()
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+    <NavigationContainer>
+      <Tab.Navigator inicialRouteName = "Login">
+        <Tab.Screen 
+        name = "Calculator" 
+        component = {Calculator} 
+        options = {
+          {
+          headerShown: false
+          }
+        }/>
+        <Tab.Screen 
+        name = "Instagram" 
+        component = {LoginInstagram}
+        options = {
+          {
+headerShown: false
+        }
+        } />
+        <Tab.Screen 
+        name = "Pizza" 
+        component = {PizzaChoice} 
+        options = {
+          {
+            headerShown: false
+          }
+        }
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
+    
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
