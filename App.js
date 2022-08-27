@@ -13,7 +13,7 @@ export default function App() {
   return (
 
     <NavigationContainer>
-      <Tab.Navigator inicialRouteName = "Login">
+      <Tab.Navigator  inicialRouteName = "Login">
         <Tab.Screen 
         name = "Calculator" 
         component = {Calculator} 

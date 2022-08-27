@@ -3,21 +3,24 @@ import {
     Text,
     StyleSheet,
     Image,
+    Dimensions,
 } from "react-native"
+
+
 
 import image from "../../../assets/iconeSeta.png"
 import dividir from "../../../assets/dividir.png"
 
 
 export default function Buttons ({buttons}) {
+
     return (
         
-    <TouchableOpacity style={styles.button} key={buttons.id}>
+    <TouchableOpacity style={styles.button} key={buttons.label}>
          {buttons.type ==="first" &&  <Text style={styles.buttonText}>{buttons.label}</Text>}
          {buttons.type ==="second" &&  <Text style={styles.buttonTextWhite}>{buttons.label}</Text>}
          {buttons.type ==="third" &&  <Image style={styles.image} source = {image}/>}
          {buttons.type ==="forth" &&  <Image style={styles.dividir} source = {dividir}/>}
-
     </TouchableOpacity>
     )
 
@@ -41,7 +44,7 @@ const styles = StyleSheet.create({
     button: {
         marginLeft: "5%",
         marginTop: "5%",
-        height: 50,
+        height: Dimensions.get("window").width/7,
         width: "20%",
         backgroundColor: "#243540",
         shadowColor: "#000",

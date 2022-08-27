@@ -1,134 +1,81 @@
 import { SafeAreaView, View, Text, StyleSheet, StatusBar, TouchableOpacity } from "react-native"
 import Buttons from "./Buttons"
+import { useState } from "react"
 
 
 export default function Calculator() {
 
-    const buttons = [{
-        id: 1,
-        label: "AC",
-        type: "first"
-    },
+    const [value, setValue] = useState("0")
+    const [result, setResult] = useState(["0"])
 
-    {
-        id: 2,
-        label: "",
-        type: "third",
-    },
+    function calcValue(digit) {
+        setResult(value + digit)
+        console.warn(result)
+    }
+    
 
-    {
-        id: 3,
-        label: "%",
-        type: "first",
-    },
+    function clearResult() {
+        setValue("0")
+        setResult("0")
+    }
 
-    {
-        id: 4,
-        label: "",
-        type: "forth",
-    },
+    function generateResult() {
+        setValue(eval(result))
 
-    {
-        id: 5,
-        label: "7",
-        type: "second",
-    },
+    }
 
-    {
-        id: 6,
-        label: "8",
-        type: "second",
-    },
-
-    {
-        id: 7,
-        label: "9",
-        type: "second",
-    },
-
-    {
-        id: 8,
-        label: "x",
-        type: "first",
-    },
-
-    {
-        id: 10,
-        label: "4",
-        type: "second",
-    },
-
-    {
-        id: 11,
-        label: "5",
-        type: "second",
-    },
-
-    {
-        id: 12,
-        label: "6",
-        type: "second",
-    },
-
-    {
-        id: 13,
-        label: "-",
-        type: "first",
-    },
-
-    {
-        id: 14,
-        label: "1",
-        type: "second",
-    },
-
-    {
-        id: 15,
-        label: "2",
-        type: "second",
-    },
-    {
-        id: 16,
-        label: "3",
-        type: "second",
-    },
-    {
-        id: 17,
-        label: "+",
-        type: "first",
-    },
-
-    {
-        id: 18,
-        label: "0",
-        type: "second",
-    },
-
-    {
-        id: 19,
-        label: ".",
-        type: "second",
-    },
-
+    function returnDigit (){
+        setResult (result.lenght-1)
+    }
+    
+    const buttons = [
+        { label: "AC", type: "first" },
+        { label: "", type: "third" },
+        { label: "%", type: "first" },
+        { label: "÷", type: "first" },
+        { label: "7", type: "second" },
+        { label: "8", type: "second" },
+        { label: "9", type: "second" },
+        { label: "x", type: "first" },
+        { label: "4", type: "second" },
+        { label: "5", type: "second" },
+        { label: "6", type: "second" },
+        { label: "-", type: "first" },
+        { label: "1", type: "second" },
+        { label: "2", type: "second" },
+        { label: "3", type: "second" },
+        { label: "+", type: "first" },
+        { label: "0", type: "second" },
+        { label: ".", type: "second" },
     ]
 
-
-
     return (
+
+       
+
         <SafeAreaView style={styles.container}>
-            <StatusBar/>
-            <Text style={styles.result}>Resultado</Text>
-            <Text style={styles.whiteText}>Aqui vai a conta </Text>
+            <StatusBar />
+
+            <Text style={styles.result}>{result}</Text>
+            <Text style={styles.whiteText}> {value} </Text>
 
             <View style={styles.buttonsView}>
                 {
-                    buttons.map((buttons) => (<Buttons buttons={buttons} />))
+                    buttons.map((buttons, index) => (
+                    
+                        <Buttons
+                            buttons={buttons}
+                            key={index}
+                            onPress={() => calcValue(buttons.label)} />))
+                            
                 }
 
-<TouchableOpacity style={styles.specialButton} key={buttons.id}>
-       <Text style={styles.specialButtonText}>=</Text>
-         
-    </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.specialButton}
+                    key={buttons.id}
+                    onPress={generateResult}>
+                    <Text style={styles.specialButtonText}>=</Text>
+                </TouchableOpacity>
 
 
             </View>
@@ -138,12 +85,13 @@ export default function Calculator() {
     )
 
 }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: "center",
         backgroundColor: "#243540",
         paddingRight: "5%",
     },
