@@ -1,26 +1,27 @@
 import { SafeAreaView, View, Text, StyleSheet, StatusBar, TouchableOpacity } from "react-native"
 import Buttons from "./Buttons"
+import {Print} from "./Calcul"
 import { useState } from "react"
 
 
 export default function Calculator() {
 
-    const [value, setValue] = useState("0")
-    const [result, setResult] = useState(["0"])
 
-    function calcValue(digit) {
-        setResult(value + digit)
-        console.warn(result)
-    }
+
+    const [value, setValue] = useState("0")
+
+    const [number, setNumber] = useState("0")
+    
+
     
 
     function clearResult() {
         setValue("0")
-        setResult("0")
     }
 
     function generateResult() {
-        setValue(eval(result))
+        setNumber()
+        console.warn(showDigit.digit)
 
     }
 
@@ -54,10 +55,13 @@ export default function Calculator() {
        
 
         <SafeAreaView style={styles.container}>
-            <StatusBar />
-
-            <Text style={styles.result}>{result}</Text>
-            <Text style={styles.whiteText}> {value} </Text>
+             <StatusBar backgroundColor = "#808080"/>
+             <Print/>
+            
+            <Text style={styles.result}>{Buttons.result}</Text>
+         
+     
+           
 
             <View style={styles.buttonsView}>
                 {
@@ -66,14 +70,13 @@ export default function Calculator() {
                         <Buttons
                             buttons={buttons}
                             key={index}
-                            onPress={() => calcValue(buttons.label)} />))
-                            
+                            />))
                 }
 
                 <TouchableOpacity
                     style={styles.specialButton}
                     key={buttons.id}
-                    onPress={generateResult}>
+                    >
                     <Text style={styles.specialButtonText}>=</Text>
                 </TouchableOpacity>
 
@@ -102,12 +105,7 @@ const styles = StyleSheet.create({
         alignSelf: "flex-end",
     },
 
-    whiteText: {
-        fontSize: 24,
-        color: "#808080",
-        alignSelf: "flex-end",
-        marginVertical: "5%",
-    },
+   
 
     buttonsView: {
         flexDirection: "row",
@@ -130,6 +128,13 @@ const styles = StyleSheet.create({
     specialButtonText: {
         fontSize: 20,
         color: "#F2F2F2",
+    },
+
+    whiteText: {
+        fontSize: 24,
+        color: "#808080",
+        alignSelf: "flex-end",
+        marginVertical: "5%",
     },
 
 

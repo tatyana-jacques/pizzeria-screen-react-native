@@ -5,6 +5,7 @@ import {
     Image,
     Dimensions,
 } from "react-native"
+import {Calcul} from "./Calcul"
 
 
 
@@ -12,11 +13,13 @@ import image from "../../../assets/iconeSeta.png"
 import dividir from "../../../assets/dividir.png"
 
 
+
 export default function Buttons ({buttons}) {
+
 
     return (
         
-    <TouchableOpacity style={styles.button} key={buttons.label}>
+    <TouchableOpacity style={styles.button} key={buttons.label}  onPress={()=>Calcul(buttons.label)}>
          {buttons.type ==="first" &&  <Text style={styles.buttonText}>{buttons.label}</Text>}
          {buttons.type ==="second" &&  <Text style={styles.buttonTextWhite}>{buttons.label}</Text>}
          {buttons.type ==="third" &&  <Image style={styles.image} source = {image}/>}
