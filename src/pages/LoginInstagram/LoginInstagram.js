@@ -2,9 +2,16 @@ import { SafeAreaView, Text, TextInput, StyleSheet, Image, View, TouchableOpacit
 import { LinearGradient } from 'expo-linear-gradient'
 import instagram from "./instagramLogo.png"
 import facebookLogo from "./facebookLogo.png"
+import {useState} from "react"
 
 export default function LoginInstagram() {
-  <StatusBar backgroundColor="rgba(255,255,255,0.1)" />
+
+  const [user, userName] = useState("")
+  const [pass, passWord] = useState("")
+  
+
+
+  
 
   return (
     <SafeAreaView style={styles.container}>
@@ -29,7 +36,8 @@ export default function LoginInstagram() {
             placeholder="Digite seu nome de usuário"
             placeholderTextColor={"rgba(255,255,255,0.2)"}
             selectionColor="#fff"
-            keyboardType="email-address" />
+            keyboardType="email-address" 
+            onChangeText = {userName}/>
         </View>
 
         <View style={styles.input}>
@@ -38,11 +46,12 @@ export default function LoginInstagram() {
             placeholder="Digite sua senha"
             placeholderTextColor={"rgba(255,255,255,0.2)"}
             selectionColor="#fff"
-            secureTextEntry />
+            secureTextEntry
+            onChangeText = {passWord} />
         </View>
 
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Entrar</Text>
+        <TouchableOpacity style={styles.button} onPress={()=>alert(user +" " + pass)}>
+          <Text style={styles.buttonText}  >Entrar</Text>
         </TouchableOpacity>
 
 
