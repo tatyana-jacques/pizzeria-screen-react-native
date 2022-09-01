@@ -3,34 +3,16 @@ import {
     StyleSheet,
   
 } from "react-native"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
-let digit = []
-
-
-export function Calcul(label) {
- digit.push(label)
- 
- Print () 
-
-    //console.warn(digit)
-        return (   
-           (digit)
-        ) 
-        
+export default function Calcul () {
     
-}
+  
 
-export function Print (){
-   
-    console.log(digit)
-   
-    return(
-        <Text>{digit}</Text>
-        
-        
+
+    return (
+        <Text>  </Text>
     )
-
 }
 
 
